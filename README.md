@@ -49,14 +49,22 @@ Sistema completo de HNS (Hide and Seek) con niveles, inspirado en los servidores
 - ✅ Sistema Premium
 - ✅ Sistema de Party
 - ✅ Sistema de láseres
-- ✅ Sistema de habilidades normales
+- ✅ Sistema de habilidades normales con integración SQL completa
 - ✅ Modo Carnage
-- ✅ Habilidades Carnage
+- ✅ Habilidades Carnage con integración SQL completa
 - ✅ Paracaídas
 - ✅ HE desbloqueable por nivel
 - ✅ Ranking
 - ✅ HUD permanente
 - ✅ Menús interactivos
+- ✅ Sistema de hashing de contraseñas mejorado
+- ✅ Scripts de descarga de modelos incluidos
+
+### Mejoras Recientes (v1.1)
+- 🔒 **Hashing de contraseñas mejorado** - Implementación XOR con rotación para mayor seguridad
+- 💾 **Integración SQL completa** - Habilidades normales y Carnage ahora se guardan/cargan desde SQLite
+- 📥 **Scripts de descarga** - Scripts automatizados para obtener modelos requeridos
+- 🏗️ **Arquitectura documentada** - Guía completa para desarrolladores
 
 ## 🏗️ Arquitectura del Proyecto
 

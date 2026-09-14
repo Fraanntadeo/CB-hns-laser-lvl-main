@@ -10,6 +10,7 @@ Sistema de cuentas, SQLite y gestión de datos
 #include <amxmodx>
 #include <amxmisc>
 #include <sqlx>
+#include <hns_lvl_core>
 
 #pragma semicolon 1
 #pragma library hns_lvl_core

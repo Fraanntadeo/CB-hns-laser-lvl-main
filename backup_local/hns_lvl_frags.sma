@@ -10,6 +10,7 @@ Sistema de frags y progresión
 #include <amxmodx>
 #include <amxmisc>
 #include <hns_lvl_core>
+#include <hns_lvl_frags>
 #include <hns_lvl_levels>
 #include <hns_lvl_happyhour>
 #include <hns_lvl_party>

@@ -48,6 +48,9 @@ new g_cvar_debug;
 new g_cvar_points_per_level;
 new g_prefix[32];
 
+// Handle SQL del core
+new Handle:g_sql_tuple;
+
 public plugin_init()
 {
     register_plugin("HNS LVL Skills", "1.0", "Bstr # Thynuviel");

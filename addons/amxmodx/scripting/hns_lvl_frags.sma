@@ -125,8 +125,43 @@ bool:is_in_party(id)
 // Distribuir frags a party
 distribute_party_frags(killer_id, base_frags)
 {
-    // TODO: Implementar distribución de party cuando esté el módulo
-    // Este función se conectará con hns_lvl_party
+    if (!is_in_party(killer_id))
+        return;
+    
+    // Obtener información de la party
+    new party_id = hns_get_party_id(killer_id);
+    if (party_id == 0)
+        return;
+    
+    // Obtener miembros de la party
+    new party_members[MAX_PLAYERS + 1];
+    new member_count = hns_get_party_members(party_id, party_members, sizeof(party_members));
+    
+    if (member_count == 0)
+        return;
+    
+    // Distribuir frags a cada miembro individualmente
+    for (new i = 0; i < member_count; i++)
+    {
+        new member_id = party_members[i];
+        if (is_user_connected(member_id) && hns_is_user_logged(member_id))
+        {
+            // Cada miembro calcula su propio multiplicador
+            new member_multiplier = get_frags_multiplier(member_id);
+            new member_frags = base_frags * member_multiplier;
+            
+            // Agregar frags al miembro
+            hns_add_user_frags(member_id, member_frags);
+            
+            if (get_pcvar_num(g_cvar_debug))
+            {
+                new member_name[32];
+                get_user_name(member_id, member_name, charsmax(member_name));
+                log_amx("[HNS LVL] Party: %s recibió %d frags (multiplicador: %d)", 
+                       member_name, member_frags, member_multiplier);
+            }
+        }
+    }
 }
 
 // NATIVES

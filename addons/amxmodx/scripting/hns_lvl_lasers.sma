@@ -263,8 +263,9 @@ public fw_laser_touch(laser_ent, victim)
     // Aplicar daño
     new Float:damage = LASER_DAMAGE;
     
-    // Aplicar habilidades de daño si existen
-    // TODO: Integrar con sistema de habilidades
+    // El daño puede ser modificado por habilidades de láser
+    // La integración con habilidades se puede agregar mediante natives
+    // Por ahora el daño es constante según configuración
     
     new health = get_user_health(victim);
     if (health - damage <= 0)

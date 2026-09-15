@@ -22,6 +22,7 @@ native hns_accept_party_invite(id);
 native hns_leave_party(id);
 native hns_kick_from_party(leader_id, target_id);
 native hns_get_party_leader(id);
+native hns_get_party_id(id);
 native hns_is_in_party(id);
 native hns_get_party_member_count(id);
 native hns_get_party_members(id, members[], max_members);

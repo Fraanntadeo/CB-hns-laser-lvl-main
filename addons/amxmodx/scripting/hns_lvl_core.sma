@@ -788,8 +788,31 @@ public native_get_user_rank_name(plugin, params)
     if (id < 1 || id > MAX_PLAYERS)
         return 0;
     
-    // TODO: Implementar lógica de rangos
-    copy(rank_name, len, "Novato");
+    // Calcular rango basado en nivel
+    new level = g_player_level[id];
+    new rank_index = (level - 1) / 10;
+    
+    // Nombres de rangos según nivel
+    switch(rank_index)
+    {
+        case 0: copy(rank_name, len, "Novato");           // 1-10
+        case 1: copy(rank_name, len, "Aprendiz");        // 11-20
+        case 2: copy(rank_name, len, "Explorador");      // 21-30
+        case 3: copy(rank_name, len, "Cazador");         // 31-40
+        case 4: copy(rank_name, len, "Acechador");       // 41-50
+        case 5: copy(rank_name, len, "Depredador");      // 51-60
+        case 6: copy(rank_name, len, "Asesino");         // 61-70
+        case 7: copy(rank_name, len, "Elite");           // 71-80
+        case 8: copy(rank_name, len, "Veterano");        // 81-90
+        case 9: copy(rank_name, len, "Maestro");         // 91-100
+        case 10: copy(rank_name, len, "Campeón");        // 101-110
+        case 11: copy(rank_name, len, "Dominador");      // 111-120
+        case 12: copy(rank_name, len, "Leyenda");        // 121-130
+        case 13: copy(rank_name, len, "Inmortal");       // 131-140
+        case 14: copy(rank_name, len, "Supremo");        // 141-150
+        default: copy(rank_name, len, "Supremo");         // >150 (fallback)
+    }
+    
     set_string(2, rank_name, len);
     return 1;
 }

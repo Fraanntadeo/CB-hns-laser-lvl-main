@@ -806,6 +806,7 @@ public plugin_natives()
     register_native("hns_leave_party", "native_leave_party");
     register_native("hns_kick_from_party", "native_kick_from_party");
     register_native("hns_get_party_leader", "native_get_party_leader");
+    register_native("hns_get_party_id", "native_get_party_id");
     register_native("hns_is_in_party", "native_is_in_party");
     register_native("hns_get_party_member_count", "native_get_party_member_count");
     register_native("hns_get_party_members", "native_get_party_members");
@@ -864,6 +865,12 @@ public native_get_party_leader(plugin, params)
     ArrayGetArray(g_parties, g_player_party[id] - 1, party_data);
     
     return party_data[PARTY_LEADER];
+}
+
+public native_get_party_id(plugin, params)
+{
+    new id = get_param(1);
+    return g_player_party[id];
 }
 
 public native_is_in_party(plugin, params)

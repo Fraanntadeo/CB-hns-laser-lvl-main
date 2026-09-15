@@ -1,9 +1,10 @@
 @echo off
 REM Script de descarga de modelos para HNS + LVL
 REM Autor: Bstr # Thynuviel
+REM Versión: 1.0 Final
 
 echo ========================================
-echo Descargando modelos para HNS + LVL
+echo Descargando modelos para HNS + LVL v1.0
 echo ========================================
 echo.
 
@@ -11,6 +12,7 @@ REM Crear directorios necesarios
 if not exist "models" mkdir models
 if not exist "sprites" mkdir sprites
 if not exist "sound" mkdir sound
+if not exist "sound\Ancestral-Games" mkdir sound\Ancestral-Games
 
 echo [1/4] Parachute model...
 REM Nota: El modelo de paracaídas debe obtenerse de una fuente confiable
@@ -53,5 +55,9 @@ echo.
 echo Modelos opcionales pero recomendados:
 echo - sound/Ancestral-Games/ (efectos de sonido)
 echo - models/Ancestral-Games/ (modelos personalizados)
+echo.
+echo ========================================
+echo HNS + LVL v1.0 Final
+echo ========================================
 echo.
 pause

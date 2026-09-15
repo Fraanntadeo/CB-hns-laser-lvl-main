@@ -1,9 +1,10 @@
 #!/bin/bash
 # Script de descarga de modelos para HNS + LVL
 # Autor: Bstr # Thynuviel
+# Versión: 1.0 Final
 
 echo "========================================"
-echo "Descargando modelos para HNS + LVL"
+echo "Descargando modelos para HNS + LVL v1.0"
 echo "========================================"
 echo ""
 
@@ -50,4 +51,8 @@ echo ""
 echo "Modelos opcionales pero recomendados:"
 echo "- sound/Ancestral-Games/ (efectos de sonido)"
 echo "- models/Ancestral-Games/ (modelos personalizados)"
+echo ""
+echo "========================================"
+echo "HNS + LVL v1.0 Final"
+echo "========================================"
 echo ""

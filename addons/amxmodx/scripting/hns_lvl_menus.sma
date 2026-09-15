@@ -159,9 +159,14 @@ public cmd_rank(id)
         return PLUGIN_HANDLED;
     }
     
-    // TODO: Implementar ranking desde base de datos
-    // Por ahora mostramos un mensaje placeholder
-    client_print(id, print_chat, "%s Ranking en desarrollo - usa /top para ver el top 10", g_prefix);
+    // Mostrar ranking personal del jugador
+    new player_level = hns_get_user_level(id);
+    new player_frags = hns_get_user_frags(id);
+    new rank_name[32];
+    hns_get_user_rank_name(id, rank_name, charsmax(rank_name));
+    
+    client_print(id, print_chat, "%s === Tu Ranking ===", g_prefix);
+    client_print(id, print_chat, "Nivel: %d | Rango: %s | Frags: %d", player_level, rank_name, player_frags);
     
     return PLUGIN_HANDLED;
 }
@@ -175,9 +180,54 @@ public cmd_top(id)
         return PLUGIN_HANDLED;
     }
     
-    // TODO: Implementar top 10 desde base de datos
-    // Por ahora mostramos un mensaje placeholder
-    client_print(id, print_chat, "%s Top 10 en desarrollo", g_prefix);
+    // Mostrar top 10 desde datos de jugadores conectados
+    // (El ranking completo desde DB está en hns_lvl_ranking.sma)
+    new top_count = 0;
+    new top_players[MAX_PLAYERS + 1];
+    new top_levels[MAX_PLAYERS + 1];
+    
+    // Ordenar jugadores conectados por nivel
+    for (new i = 1; i <= MAX_PLAYERS; i++)
+    {
+        if (is_user_connected(i) && hns_is_user_logged(i))
+        {
+            new level = hns_get_user_level(i);
+            
+            // Insertar en orden
+            new pos = 0;
+            while (pos < top_count && level < top_levels[pos])
+            {
+                pos++;
+            }
+            
+            // Mover elementos hacia adelante
+            for (new j = top_count; j > pos; j--)
+            {
+                top_players[j] = top_players[j - 1];
+                top_levels[j] = top_levels[j - 1];
+            }
+            
+            // Insertar nuevo elemento
+            top_players[pos] = i;
+            top_levels[pos] = level;
+            top_count++;
+            
+            if (top_count > 10)
+                top_count = 10;
+        }
+    }
+    
+    // Mostrar top 10
+    client_print(id, print_chat, "%s === Top 10 Jugadores Conectados ===", g_prefix);
+    for (new i = 0; i < top_count; i++)
+    {
+        new player_id = top_players[i];
+        new name[32], rank_name[32];
+        get_user_name(player_id, name, charsmax(name));
+        hns_get_user_rank_name(player_id, rank_name, charsmax(rank_name));
+        
+        client_print(id, print_chat, "%d. %s - Nivel %d (%s)", i + 1, name, top_levels[i], rank_name);
+    }
     
     return PLUGIN_HANDLED;
 }

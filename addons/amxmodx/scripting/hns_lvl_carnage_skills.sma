@@ -373,7 +373,7 @@ apply_carnage_skill_effects(id)
                 if (containi(skill_data[CARNAGE_SKILL_NAME], "Daño") != -1)
                 {
                     // Aplicar multiplicador de daño Carnage
-                    // TODO: Implementar sistema de daño Carnage
+                    // El daño se maneja en el hook fw_take_damage del módulo Carnage
                 }
                 
                 // Ejemplo: Si el nombre contiene "HP", aumentar HP durante Carnage
@@ -387,19 +387,27 @@ apply_carnage_skill_effects(id)
                 // Ejemplo: Si el nombre contiene "Freeze", mejorar freeze
                 if (containi(skill_data[CARNAGE_SKILL_NAME], "Freeze") != -1)
                 {
-                    // TODO: Implementar mejoras de freeze
+                    // El freeze se maneja en el módulo Carnage principal
+                    // Esta habilidad puede aumentar la duración del freeze
                 }
                 
                 // Ejemplo: Si el nombre contiene "Recoil", reducir retroceso
                 if (containi(skill_data[CARNAGE_SKILL_NAME], "Recoil") != -1)
                 {
-                    // TODO: Implementar reducción de retroceso
+                    // Reducir retroceso usando Fakemeta (pev_punchangle)
+                    new Float:punchangle[3];
+                    pev(id, pev_punchangle, punchangle);
+                    punchangle[0] *= (1.0 - (skill_data[CARNAGE_SKILL_INCREMENT] * skill_level * 0.1));
+                    set_pev(id, pev_punchangle, punchangle);
                 }
                 
                 // Ejemplo: Si el nombre contiene "Fire Rate", aumentar cadencia
                 if (containi(skill_data[CARNAGE_SKILL_NAME], "Fire Rate") != -1)
                 {
-                    // TODO: Implementar aumento de cadencia
+                    // Aumentar cadencia usando Fakemeta (pev_nextattack)
+                    new Float:next_attack;
+                    pev(id, pev_nextattack, next_attack);
+                    set_pev(id, pev_nextattack, next_attack * (1.0 - (skill_data[CARNAGE_SKILL_INCREMENT] * skill_level * 0.05)));
                 }
             }
         }

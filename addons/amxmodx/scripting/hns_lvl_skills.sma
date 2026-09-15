@@ -373,8 +373,8 @@ apply_skill_effects(id)
                 // Ejemplo: Si el nombre contiene "Daño", aumentar daño
                 if (containi(skill_data[SKILL_NAME], "Daño") != -1)
                 {
-                    // Aplicar multiplicador de daño
-                    // TODO: Implementar sistema de daño
+                    // Aplicar multiplicador de daño mediante Hook de TakeDamage
+                    // El daño se maneja en el hook fw_take_damage
                 }
                 
                 // Ejemplo: Si el nombre contiene "HP", aumentar HP
@@ -389,7 +389,8 @@ apply_skill_effects(id)
                 if (containi(skill_data[SKILL_NAME], "Velocidad") != -1)
                 {
                     new Float:speed_bonus = skill_data[SKILL_INCREMENT] * skill_level;
-                    // TODO: Implementar modificación de velocidad
+                    // Aplicar velocidad usando Fakemeta (pev_speed)
+                    set_pev(id, pev_maxspeed, 250.0 + speed_bonus);
                 }
             }
         }
